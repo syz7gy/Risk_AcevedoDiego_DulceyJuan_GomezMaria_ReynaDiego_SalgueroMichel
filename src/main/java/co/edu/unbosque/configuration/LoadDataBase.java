@@ -8,6 +8,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import co.edu.unbosque.model.User;
+import co.edu.unbosque.repository.UserRepository;
 import co.edu.unbosque.util.AESutil;
 
 
@@ -23,7 +25,12 @@ public class LoadDataBase {
 			if (found.isPresent()) {
 				LOG.info("Admin already exist, skiping admin creation");
 			} else {
-				userRepo.save(new User(AESutil.encrypt("admin"), AESutil.encrypt("1234")));
+				String username = AESutil.encrypt("admin");
+				String password = AESutil.encrypt("papasfritas");
+				String age = AESutil.encrypt("20");
+				String troopColor = AESutil.encrypt("green");
+				String country = AESutil.encrypt("Colombian");
+				userRepo.save(new User(username, password, age, troopColor, country));
 				LOG.info("Preloading admin information");
 			}
 		};

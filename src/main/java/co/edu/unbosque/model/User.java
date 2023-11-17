@@ -1,5 +1,7 @@
 package co.edu.unbosque.model;
 
+import java.util.Objects;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,7 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "players")
-public class Player {
+public class User {
 	
 	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY)Long id;
 	@Column(unique = true)
@@ -19,11 +21,11 @@ public class Player {
 	private String troopColor;
 	private String country;
 	
-	public Player() {
+	public User() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Player(Long id, String username, String password, String age, String troopColor, String country) {
+	public User(Long id, String username, String password, String age, String troopColor, String country) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -33,7 +35,7 @@ public class Player {
 		this.country = country;
 	}
 
-	public Player(String username, String password, String age, String troopColor, String country) {
+	public User(String username, String password, String age, String troopColor, String country) {
 		this.username = username;
 		this.password = password;
 		this.age = age;
@@ -87,6 +89,31 @@ public class Player {
 
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(age, country, id, password, troopColor, username);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return Objects.equals(age, other.age) && Objects.equals(country, other.country) && Objects.equals(id, other.id)
+				&& Objects.equals(password, other.password) && Objects.equals(troopColor, other.troopColor)
+				&& Objects.equals(username, other.username);
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", age=" + age + ", troopColor="
+				+ troopColor + ", country=" + country + "]";
 	}
 	
 	

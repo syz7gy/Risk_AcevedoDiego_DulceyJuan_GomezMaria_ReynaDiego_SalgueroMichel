@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import co.edu.unbosque.model.User;
 import co.edu.unbosque.repository.UserRepository;
 import co.edu.unbosque.util.AESutil;
+import co.edu.unbosque.util.MyLinkedList;
 
 @Service
 public class UserService implements CRUDOperations<User> {
@@ -38,14 +39,16 @@ public class UserService implements CRUDOperations<User> {
 	}
 
 	@Override
-	public List<User> getAll() {
-		List<User> aux = new ArrayList<User>();
+	public MyLinkedList<User> getAll() {
+		MyLinkedList<User> aux = new MyLinkedList<User>();
 		userRepo.findAll().forEach(u -> aux.add(u));
-		for (User u : aux) {
-			u.setUsername(AESutil.decrypt(u.getUsername()));
-			u.setPassword(AESutil.decrypt(u.getPassword()));
+		for(int i = 0; i<aux.size(); i++) {
+			aux.get(i).getInfo().setUsername(AESutil.encrypt(aux.get(i).getInfo().getUsername()));
+			aux.get(i).getInfo().setPassword(AESutil.encrypt(aux.get(i).getInfo().getPassword()));
+			aux.get(i).getInfo().setAge(AESutil.encrypt(aux.get(i).getInfo().getAge()));
+			aux.get(i).getInfo().setTroopColor(AESutil.encrypt(aux.get(i).getInfo().getTroopColor()));
+			aux.get(i).getInfo().setCountry(AESutil.encrypt(aux.get(i).getInfo().getCountry()));
 		}
-
 		return aux;
 	}
 

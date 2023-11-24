@@ -11,7 +11,6 @@ public class Edge {
 	}
 	
 	public Edge(Vertex source, Vertex destination, double wight) {
-		super();
 		this.source = source;
 		this.destination = destination;
 		this.wight = wight;

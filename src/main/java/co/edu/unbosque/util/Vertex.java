@@ -14,8 +14,8 @@ public class Vertex {
 	}
 	
 	public Vertex(int item) {
-        key = item;
-        left = right = null;
+        this.key = item;
+        this.left = this.right = null;
     }
 
 	public Vertex() {

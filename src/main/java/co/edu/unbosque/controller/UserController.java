@@ -36,7 +36,7 @@ public class UserController {
 		if (status == 0) {
 			return new ResponseEntity<String>("User created succesfully.", HttpStatus.CREATED);
 		} else {
-			return new ResponseEntity<String>("Error creatinf¿g the user. The username might be already taken.",
+			return new ResponseEntity<String>("Error creating the user. The username might be already taken.",
 					HttpStatus.NOT_ACCEPTABLE);
 		}
 	}

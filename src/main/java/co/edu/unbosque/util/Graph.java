@@ -25,7 +25,7 @@ public class Graph {
 	@Override
 	public String toString() {
 
-		return "La listad de nodos en el grafo es:\n" + listNodes + "\n";
+		return "La lista de nodos en el grafo es:\n" + listNodes + "\n";
 	}
 
 	public Vertex getVertex(String nombre) {

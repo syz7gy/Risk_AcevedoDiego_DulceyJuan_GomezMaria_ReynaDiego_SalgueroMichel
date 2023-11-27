@@ -43,11 +43,11 @@ public class UserService implements CRUDOperations<User> {
 		MyLinkedList<User> aux = new MyLinkedList<User>();
 		userRepo.findAll().forEach(u -> aux.add(u));
 		for(int i = 0; i<aux.size(); i++) {
-			aux.get(i).getInfo().setUsername(AESutil.encrypt(aux.get(i).getInfo().getUsername()));
-			aux.get(i).getInfo().setPassword(AESutil.encrypt(aux.get(i).getInfo().getPassword()));
-			aux.get(i).getInfo().setAge(AESutil.encrypt(aux.get(i).getInfo().getAge()));
-			aux.get(i).getInfo().setTroopColor(AESutil.encrypt(aux.get(i).getInfo().getTroopColor()));
-			aux.get(i).getInfo().setCountry(AESutil.encrypt(aux.get(i).getInfo().getCountry()));
+			aux.get(i).getInfo().setUsername(AESutil.decrypt(aux.get(i).getInfo().getUsername()));
+			aux.get(i).getInfo().setPassword(AESutil.decrypt(aux.get(i).getInfo().getPassword()));
+			aux.get(i).getInfo().setAge(AESutil.decrypt(aux.get(i).getInfo().getAge()));
+			aux.get(i).getInfo().setTroopColor(AESutil.decrypt(aux.get(i).getInfo().getTroopColor()));
+			aux.get(i).getInfo().setCountry(AESutil.decrypt(aux.get(i).getInfo().getCountry()));
 		}
 		return aux;
 	}

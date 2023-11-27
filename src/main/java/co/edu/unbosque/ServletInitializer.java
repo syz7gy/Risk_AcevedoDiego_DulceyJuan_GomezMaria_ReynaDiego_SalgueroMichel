@@ -1,4 +1,4 @@
-package co.edu.unbosque.risk;
+package co.edu.unbosque;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

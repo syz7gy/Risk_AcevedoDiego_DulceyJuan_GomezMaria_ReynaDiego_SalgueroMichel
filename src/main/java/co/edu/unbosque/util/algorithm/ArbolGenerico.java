@@ -2,7 +2,6 @@ package co.edu.unbosque.util.algorithm;
 
 import java.io.File;
 
-import co.edu.unbosque.model.UserFolder;
 import co.edu.unbosque.util.GTNode;
 import co.edu.unbosque.util.QueueImp;
 

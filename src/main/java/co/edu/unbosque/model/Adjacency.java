@@ -1,5 +1,6 @@
 package co.edu.unbosque.model;
 
+import java.util.Random;
 import co.edu.unbosque.util.Edge;
 import co.edu.unbosque.util.Graph;
 import co.edu.unbosque.util.MyLinkedList;
@@ -25,7 +26,7 @@ public class Adjacency {
 	private Graph worldGraph;
 
 	public Adjacency() {
-		
+
 		this.southAmerica = new MyLinkedList<Vertex>();
 		this.northAmerica = new MyLinkedList<Vertex>();
 		this.europe = new MyLinkedList<Vertex>();
@@ -33,9 +34,9 @@ public class Adjacency {
 		this.australia = new MyLinkedList<Vertex>();
 		this.africa = new MyLinkedList<Vertex>();
 		this.worldGraph = new Graph();
-		
+
 		initAdjacencies();
-		
+
 	}
 
 	public void initSouth() {
@@ -117,8 +118,6 @@ public class Adjacency {
 		af5 = new Vertex("af5");
 		af6 = new Vertex("af6");
 
-		
-
 		africa.add(af1);
 		africa.add(af2);
 		africa.add(af3);
@@ -146,9 +145,7 @@ public class Adjacency {
 		as10 = new Vertex("as10");
 		as11 = new Vertex("as11");
 		as12 = new Vertex("as12");
-		
-		
-		
+
 		asia.add(as1);
 		asia.add(as2);
 		asia.add(as3);
@@ -197,17 +194,17 @@ public class Adjacency {
 		}
 
 	}
-	
+
 	public void initAdjacencies() {
-		
+
 		initSouth();
 		initNorth();
 		initEurope();
 		initAfrica();
 		initAsia();
 		initAustralia();
-		
-		//SouthAmerica
+
+		// SouthAmerica
 		s1.addEdge(new Edge(s1, s2, 0));
 		s1.addEdge(new Edge(s1, s3, 0));
 		s2.addEdge(new Edge(s2, s1, 0));
@@ -220,8 +217,8 @@ public class Adjacency {
 		s4.addEdge(new Edge(s4, s2, 0));
 		s4.addEdge(new Edge(s4, s3, 0));
 		s4.addEdge(new Edge(s4, n3, 0));
-		
-		//NorthAmerica
+
+		// NorthAmerica
 		n1.addEdge(new Edge(n1, n2, 0));
 		n1.addEdge(new Edge(n1, n6, 0));
 		n1.addEdge(new Edge(n1, as6, 0));
@@ -257,8 +254,8 @@ public class Adjacency {
 		n9.addEdge(new Edge(n9, n3, 0));
 		n9.addEdge(new Edge(n9, n4, 0));
 		n9.addEdge(new Edge(n9, n7, 0));
-		
-		//Europe
+
+		// Europe
 		e1.addEdge(new Edge(e1, e2, 0));
 		e1.addEdge(new Edge(e1, e3, 0));
 		e1.addEdge(new Edge(e1, e4, 0));
@@ -291,8 +288,8 @@ public class Adjacency {
 		e7.addEdge(new Edge(e7, e3, 0));
 		e7.addEdge(new Edge(e7, e5, 0));
 		e7.addEdge(new Edge(e7, af5, 0));
-		
-		//Africa
+
+		// Africa
 		af1.addEdge(new Edge(af1, af2, 0));
 		af1.addEdge(new Edge(af1, af5, 0));
 		af1.addEdge(new Edge(af1, af6, 0));
@@ -316,8 +313,8 @@ public class Adjacency {
 		af6.addEdge(new Edge(af6, af1, 0));
 		af6.addEdge(new Edge(af6, af2, 0));
 		af6.addEdge(new Edge(af6, af4, 0));
-		
-		//Asia
+
+		// Asia
 		as1.addEdge(new Edge(as1, as2, 0));
 		as1.addEdge(new Edge(as1, as3, 0));
 		as1.addEdge(new Edge(as1, as7, 0));
@@ -368,7 +365,7 @@ public class Adjacency {
 		as12.addEdge(new Edge(as12, as4, 0));
 		as12.addEdge(new Edge(as12, as6, 0));
 		as12.addEdge(new Edge(as12, as10, 0));
-		
+
 	}
 
 	public MyLinkedList<Vertex> getSouthAmerica() {
@@ -761,6 +758,37 @@ public class Adjacency {
 
 	public void setWorldGraph(Graph worldGraph) {
 		this.worldGraph = worldGraph;
+	}
+//Funcion de ataque y defensa
+	public MyLinkedList<Vertex> atacar(Vertex attack, Vertex def, int numatt, int numdef) {
+
+		MyLinkedList<Integer> att = new MyLinkedList<Integer>();
+		MyLinkedList<Integer> deff = new MyLinkedList<Integer>();
+
+		Random rd = new Random();
+		for (int i = 0; i < numatt; i++) {
+			att.add(rd.nextInt(1, 6));
+		}
+		for (int i = 0; i < numdef; i++) {
+			deff.add(rd.nextInt(1, 6));
+		}
+		while (!(att.isEmpty() || deff.isEmpty()) && (attack.getTroops() > 1) && (def.getTroops() > 1)) {
+
+			if (att.extract() > deff.extract()) {
+				def.setTroops(def.getTroops() - 1);
+			} else {
+				attack.setTroops(attack.getTroops() - 1);
+			}
+		}
+		
+		if(attack.getTroops()>def.getTroops()) {
+			def.setJugador(attack.getJugador());
+		}
+
+		MyLinkedList<Vertex> vertex = new MyLinkedList<Vertex>();
+		vertex.add(attack);
+		vertex.add(def);
+		return vertex;
 	}
 
 }

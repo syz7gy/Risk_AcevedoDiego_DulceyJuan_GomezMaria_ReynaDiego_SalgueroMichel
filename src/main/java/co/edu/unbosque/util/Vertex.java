@@ -1,49 +1,21 @@
 package co.edu.unbosque.util;
-import java.util.ArrayList;
+
 
 public class Vertex {
 	
 	private String name;
 	private MyLinkedList<Edge> edges;
-	private int key;
-	private Vertex left, right;
+	private String jugador;
+	private int troops;
 	
 	public Vertex(String name) {
 		this.name=name;
-		this.edges=new MyLinkedList<Edge>();		
+		this.edges=new MyLinkedList<Edge>();
+		this.troops = 0 ;
 	}
-	
-	public Vertex(int item) {
-        this.key = item;
-        this.left = this.right = null;
-    }
 
 	public Vertex() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public int getKey() {
-		return key;
-	}
-
-	public void setKey(int key) {
-		this.key = key;
-	}
-
-	public Vertex getLeft() {
-		return left;
-	}
-
-	public void setLeft(Vertex left) {
-		this.left = left;
-	}
-
-	public Vertex getRight() {
-		return right;
-	}
-
-	public void setRight(Vertex right) {
-		this.right = right;
 	}
 
 	public String getName() {
@@ -66,13 +38,26 @@ public class Vertex {
 		edges.add(newEdge);
 	}
 
+	public int getTroops() {
+		return troops;
+	}
+
+	public void setTroops(int troops) {
+		this.troops = troops;
+	}
+
+	public String getJugador() {
+		return jugador;
+	}
+
+	public void setJugador(String jugador) {
+		this.jugador = jugador;
+	}
+
 	@Override
 	public String toString() {
 		return "\nVertex [name=" + name + ", edges=" + edges + "]";
 	}
 
-	
-	
-	
 
 }
